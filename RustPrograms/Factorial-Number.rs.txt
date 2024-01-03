@@ -1,0 +1,39 @@
+#! [allow(unused)]
+
+use std::io;
+use rand::{thread_rng, Rng};
+use std::cmp;
+use std::cmp::Ordering;
+
+/*
+Factorial Calculator
+Create a program that calculates the factorial of a given number.
+*/
+
+fn factorial(number: u64 ) -> u64 {
+    if number == 0 || number == 1 {
+        return 1;
+    }
+    number * factorial(number - 1)
+}
+
+fn main() {
+    println!("Factorial Calculator");
+
+    // Read input from user
+    println!("Enter a non-negative number");
+    let mut input = String::new();
+    io::stdin().read_line(&mut input).expect("Failed to read a line");
+
+    // convert it to non-negative integer
+    let number : u64 = match input.trim().parse() {
+        Ok(num) => num,
+        Err(_) => {
+            println!("Invalid input. Please enter a non-negative number");
+            return;
+        }
+    };
+
+    let result = factorial(number);
+    println!("The Factorial of {} is {}", number, result);
+}

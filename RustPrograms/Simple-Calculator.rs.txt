@@ -1,0 +1,27 @@
+#! [allow(unused)]
+use std::io;
+
+/*
+Simple Calculator: 
+Create a program that takes two numbers and performs basic arithmetic operations (addition, subtraction, multiplication, division).
+*/
+
+fn main() {
+    let mut number1 = String::new();
+    let mut number2 = String::new();
+
+    println!("Enter number a ");
+    io::stdin().read_line(&mut number1).expect("Enter a valid number");
+
+    println!("Enter number b ");
+    io::stdin().read_line(&mut number2).expect("Enter a valid number");
+
+    let a : i32 = number1.trim().parse().expect("Not a number");
+    let b : i32 = number2.trim().parse().expect("Not a number");
+
+    println!("Addition {} + {} = {}", a, b, a+b);
+    println!("Substraction {} - {} = {}", a, b, a-b);
+    println!("Multiplication {} * {} = {}", a, b, a*b);
+    println!("Division {} / {} = {}", a, b, a/b);
+    println!("Modulus {} % {} = {}", a, b, a%b);
+}

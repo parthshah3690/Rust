@@ -1,0 +1,56 @@
+#! [allow(unused)]
+
+use std::io;
+use rand::{thread_rng, Rng};
+use std::cmp;
+use std::cmp::Ordering;
+
+/*
+Fibonacci Sequence
+Write a program to generate the first N numbers in the Fibonacci sequence.
+*/
+
+fn fibonaci(number: u64 ) -> u64 {
+
+    if number == 0 {
+        return 0;
+    } else if number == 1 {
+        return 1;
+    } else {
+        let mut a = 0;
+        let mut b = 1;
+        let mut result = 0;
+
+        for _ in 2..=number {
+            result = a + b;
+            a = b;
+            b = result;
+        }
+        return result;
+    }
+}
+
+fn main() {
+    println!("Fibonacci Sequence Generator");
+
+    // Read input from user
+    println!("Enter a non-negative number");
+    let mut input = String::new();
+    io::stdin().read_line(&mut input).expect("Failed to read a line");
+
+    // convert it to non-negative integer
+    let number : u64 = match input.trim().parse() {
+        Ok(num) => num,
+        Err(_) => {
+            println!("Invalid input. Please enter a non-negative number");
+            return;
+        }
+    };
+
+
+    println!("Fibonacci Sequence :");
+    
+    for i in 0..number {
+        print!("{} ", fibonaci(i));
+    }
+}

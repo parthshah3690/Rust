@@ -1,0 +1,31 @@
+#! [allow(unused)]
+
+use std::io;
+use rand::{thread_rng, Rng};
+use std::cmp;
+use std::cmp::Ordering;
+
+/*
+Guess the Number Game
+Implement a simple number guessing game where the computer generates a random number, and the user has to guess it.
+*/
+
+fn main() {
+    let ran_number = thread_rng().gen_range(0..=100);
+    println!("Guess a number between 0 and 100");
+
+    loop {
+        let mut number = String::new();
+        io::stdin().read_line(&mut number).expect("Enter a number");
+        let u32_number : u32 = number.trim().parse().expect("Not a valid number");
+
+        match u32_number.cmp(&ran_number) {
+            Ordering::Equal => {
+                println!("Congratulations!! You have guessed correct number");
+                break;
+            },
+            Ordering::Greater => println!("You have guessed higher number..Try again"),
+            Ordering::Less => println!("You have guessed lower number..Try again"),
+        };
+    }
+}
