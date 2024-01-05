@@ -1,0 +1,31 @@
+#! [allow(unused)]
+
+use std::io::{self, Cursor, BufReader, BufRead, Write, ErrorKind};
+use std::process::Output;
+
+/*
+
+Palindrome Checker
+Develop a program that checks if a given string is a palindrome
+
+*/
+
+fn is_palindrome(input_text: &str) -> bool {
+    let cleaned_str: String = input_text.chars().filter(|c| c.is_alphanumeric()).collect();
+    let reversed_str:String = cleaned_str.chars().rev().collect();
+    cleaned_str.to_lowercase() == reversed_str.to_lowercase()
+}
+
+fn main() {
+    println!("Palindrome Checker");
+
+    let mut input_text = String::new();
+    println!("Enter a string");
+    io::stdin().read_line(&mut input_text).expect("Please enter a string");
+
+    if is_palindrome(&input_text) {
+        println!("{} is a palindrome string", input_text.trim());
+    } else {
+        println!("{} is not a palindrome string", input_text.trim());
+    }
+}

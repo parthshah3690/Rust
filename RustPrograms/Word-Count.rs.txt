@@ -1,0 +1,24 @@
+#! [allow(unused)]
+
+use std::io::{self, Cursor, BufReader, BufRead, Write, ErrorKind};
+use std::process::Output;
+
+/*
+Word Count
+Write a program that counts the number of words in a given text input.
+*/
+
+fn count_words(input_text: &str) -> usize {
+    input_text.split_whitespace().count()
+}
+
+fn main() {
+    println!("Word Count");
+
+    let mut input_text = String::new();
+    println!("Enter a string");
+    io::stdin().read_line(&mut input_text).expect("Please enter a string with words");
+
+    let word_count = count_words(&input_text);
+    println!("Number of words : {}", word_count);
+}
